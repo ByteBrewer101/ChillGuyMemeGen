@@ -29,10 +29,13 @@ export default function App() {
 
   //fns
   const handleColorChange = (color: string) => {
+    setBackgroundImage("")
     setBgColor(color);
+
   };
 
   const handleChillGuySelect = () => {
+    
     setSelectedImg(chillguy);
   };
 
@@ -70,11 +73,11 @@ export default function App() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="border border-gray-300 shadow-lg mb-4">
         <Stage width={400} height={300} ref={stageRef}>
-          <Layer>
+          <Layer draggable={true} >
             {BackgroundImage === "" && (
               <Rect width={500} height={500} fill={bgColor} />
             )}
-            {image && <KonvaImage image={image} />}
+            {BackgroundImage && <KonvaImage image={image} width={400} height={300}  />}
           </Layer>
           <Layer>
             <KonvaImage
@@ -101,7 +104,7 @@ export default function App() {
       </div>
 
       <div className="p-4 space-y-5">
-        <div className="flex justify-between">
+        <div className="flex space-x-2">
           <Button
             variant="outline"
             onClick={() => handleColorChange("#87CEEB")}
