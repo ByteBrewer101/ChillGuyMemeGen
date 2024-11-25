@@ -9,6 +9,8 @@ import chillgirl from "../assets/chillgirl.png";
 import Konva from "konva";
 
 
+
+
 type StageRef = Konva.Stage | null;
 
 export default function App() {
@@ -21,6 +23,7 @@ export default function App() {
   const [textsize, setTextSize] = useState<number>(30);
   const [BackgroundImage, setBackgroundImage] = useState<string>("");
   const [image] = useImage(BackgroundImage);
+
 
   
 
@@ -73,7 +76,7 @@ export default function App() {
   //endfns
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div className="flex flex-col  items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="border border-gray-300 shadow-lg mb-4">
         <Stage width={400} height={300} ref={stageRef}>
           <Layer draggable={true}>
@@ -90,7 +93,6 @@ export default function App() {
               draggable={true}
               width={selectedImg === chillguy ? 500 : 200}
               height={250}
-           
             />
           </Layer>
 
@@ -103,7 +105,7 @@ export default function App() {
               fill="white"
               fontWeight="bold"
               stroke="black"
-              strokeWidth={  (textsize/100)<2?2:(textsize/100)}
+              strokeWidth={2}
               width={300}
             />
           </Layer>
@@ -111,7 +113,7 @@ export default function App() {
       </div>
 
       <div className="p-4 space-y-5">
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 justify-around">
           <Button
             variant="outline"
             onClick={() => handleColorChange("#87CEEB")}
@@ -162,9 +164,16 @@ export default function App() {
             onChange={handleTextChange}
           />
 
-          <Button variant="outline" onClick={() => {setText(tempText);setTempText("")}}>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setText(tempText);
+              setTempText("");
+            }}
+          >
             Add Text
           </Button>
+        
         </div>
 
         <SliderDemo
