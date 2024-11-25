@@ -22,6 +22,8 @@ export default function App() {
   const [BackgroundImage, setBackgroundImage] = useState<string>("");
   const [image] = useImage(BackgroundImage);
 
+  
+
   // refs
   const stageRef = useRef<StageRef>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null); 
@@ -66,6 +68,7 @@ export default function App() {
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTempText(e.target.value);
+    
   };
   //endfns
 
@@ -85,10 +88,12 @@ export default function App() {
             <KonvaImage
               image={sImage}
               draggable={true}
-              width={selectedImg === chillguy ? 200 : 100}
-              height={120}
+              width={selectedImg === chillguy ? 500 : 200}
+              height={250}
+           
             />
           </Layer>
+
           <Layer>
             <Text
               draggable={true}
@@ -98,7 +103,7 @@ export default function App() {
               fill="white"
               fontWeight="bold"
               stroke="black"
-              strokeWidth={1}
+              strokeWidth={  (textsize/100)<2?2:(textsize/100)}
               width={300}
             />
           </Layer>
@@ -157,7 +162,7 @@ export default function App() {
             onChange={handleTextChange}
           />
 
-          <Button variant="outline" onClick={() => setText(tempText)}>
+          <Button variant="outline" onClick={() => {setText(tempText);setTempText("")}}>
             Add Text
           </Button>
         </div>
