@@ -11,6 +11,7 @@ import Konva from "konva";
 
 
 
+
 type StageRef = Konva.Stage | null;
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
   const [textsize, setTextSize] = useState<number>(30);
   const [BackgroundImage, setBackgroundImage] = useState<string>("");
   const [image] = useImage(BackgroundImage);
+  const [isBorder,setIsBorder]=useState(false)
 
 
   
@@ -105,7 +107,7 @@ export default function App() {
               fill="white"
               fontWeight="bold"
               stroke="black"
-              strokeWidth={2}
+              strokeWidth={isBorder ? 0 : 2}
               width={300}
             />
           </Layer>
@@ -186,6 +188,16 @@ export default function App() {
             }}
           >
             Add Text
+          </Button>
+          <Button
+            onClick={() => {
+              setIsBorder(!isBorder);
+            }}
+            className={`text-white px-4 py-2 rounded  active:bg-gray-700  ${
+              isBorder ? "bg-gray-900 text-white " : "bg-gray-100 text-black"
+            }`}
+          >
+            Text Outline
           </Button>
         </div>
 
